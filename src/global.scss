@@ -1,0 +1,83 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  -ms-overflow-style: none;
+  background: #f0f0f0;
+}
+// 隐藏滚动条
+*::-webkit-scrollbar {
+  display: none;
+}
+// 去掉自动填充背景颜色
+input:-webkit-autofill {
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style: none;
+}
+input {
+  width: 100%;
+  outline: none;
+  border: none;
+}
+div {
+  box-sizing: border-box;
+}
+
+@function px2rem($args) {
+  @return $args/75 * 1rem;
+}
+
+@function font($args) {
+  @return $args/2 * 1px;
+}
+
+// 数值均从 1 递增到 100
+@for $i from 1 to 101 {
+  $_value: #{$i};
+  $_rem: #{$i/75};
+  // Margin
+  .m#{$_value} {
+    margin: #{$_rem}rem;
+  }
+  .ml#{$_value} {
+    margin-left: #{$_rem}rem;
+  }
+  .mr#{$_value} {
+    margin-right: #{$_rem}rem;
+  }
+  .mt#{$_value} {
+    margin-top: #{$_rem}rem;
+  }
+  .mb#{$_value} {
+    margin-bottom: #{$_rem}rem;
+  }
+}
+
+// 通用按钮
+@mixin common-btn($width, $height, $color, $radius) {
+  width: px2rem($width);
+  height: px2rem($height);
+  line-height: px2rem($height);
+  border-radius: px2rem($radius);
+  background: $color;
+  color: #ffffff;
+  text-align: center;
+}
+// 单行超出省略
+@mixin line-one-ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+// 块级
+.db {
+  display: block;
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimum-scale=1.0, viewport-fit=cover">
+  <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+  <title>Home+</title>
+  <script>
+    // 禁止pc端访问
+    (function forbidPc() {
+      let system = {};
+      let p = navigator.platform;
+      let u = navigator.userAgent;
+      system.win = p.indexOf("Win") == 0;
+      system.mac = p.indexOf("Mac") == 0;
+      system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+      if (system.win || system.mac || system.xll) {
+        //win手机端
+        if (u.indexOf('Windows Phone') > -1) {
+        } else {
+          let url = window.location.pathname
+          if (url !== '/system/notice') {
+            // window.location.href = ''
+          }
+
+        }
+      }
+    })()
+
+    // 设置页面根元素大小
+    function initRootFontSize() {
+      document.documentElement.style.fontSize =
+        document.documentElement.clientWidth / 10 + 'px'
+    }
+    document.addEventListener(
+      'DOMContentLoaded',
+      () => initRootFontSize(),
+      false
+    )
+    window.onresize = initRootFontSize
+
+    // 禁止ios10以上放大
+    window.onload = function () {
+      var lastTouchEnd = 0;
+      document.addEventListener('touchstart', function (event) {
+        if (event.touches.length > 1) {
+          event.preventDefault();
+        }
+      });
+      document.addEventListener('touchend', function (event) {
+        var now = (new Date()).getTime();
+        if (now - lastTouchEnd <= 300) {
+          event.preventDefault();
+        }
+        lastTouchEnd = now;
+      }, false);
+      document.addEventListener('gesturestart', function (event) {
+        event.preventDefault();
+      });
+      document.addEventListener('dblclick', function (event) {
+        event.preventDefault();
+      })
+    }
+
+  </script>
+</head>
+
+<body>
+  <noscript>
+    <strong>We're sorry but home-plus doesn't work properly without JavaScript enabled. Please enable it to
+      continue.</strong>
+  </noscript>
+  <div id="app"></div>
+  <!-- built files will be auto injected -->
+</body>
+
+</html>
